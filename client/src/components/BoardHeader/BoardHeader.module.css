@@ -19,3 +19,18 @@
   align-items: center;
   gap: 12px;
 }
+
+.toggleBtn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.toggleBtn:hover {
+  background: var(--border);
+}
