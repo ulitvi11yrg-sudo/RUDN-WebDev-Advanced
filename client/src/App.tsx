@@ -1,10 +1,12 @@
-import { BoardHeader } from "./components/BoardHeader/BoardHeader";
-import { BoardColumn } from "./components/BoardColumn/BoardColumn";
-import { NewCardForm } from "./components/NewCardForm/NewCardForm";
-import styles from "./App.module.css";
-import type { Card } from "./types/card";
+/* app это весь мой интерфейс, мой кодичек*/
 
-const cards: Card[] = [{
+import { BoardHeader } from "./components/BoardHeader/BoardHeader"; 
+import { BoardColumn } from "./components/BoardColumn/BoardColumn";
+import { NewCardForm } from "./components/NewCardForm/NewCardForm"; /*ну тут все ясно я добпвляю свои "кирпичики" */
+import styles from "./App.module.css";
+import type { Card } from "./types/card"; 
+/*импорт все компоненты, стили и тип*/
+const cards: Card[] = [{ /*создаем массив cards типа Card[]*/
   id: '1', 
   title: 'Первая карточка', 
   isDone: false
@@ -26,7 +28,7 @@ const cards: Card[] = [{
 }];
 
 function App() {
-  return (
+  return ( 
     <div className={styles.app}>
       <BoardHeader />
       <main className={styles.board}>

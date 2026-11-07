@@ -5,9 +5,9 @@ type BoardCardProps = {
   isDone: boolean;
 };
 
-export function BoardCard({ title, isDone }: BoardCardProps) {
+export function BoardCard({ title, isDone }: BoardCardProps) {  /*сразу вытаскиваем title и isDone из props.*/
   return <div 
-  className={isDone ? 
+  className={isDone ?   
     styles.isDone : 
     styles.card
   }>
