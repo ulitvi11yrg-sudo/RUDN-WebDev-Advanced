@@ -1,40 +1,29 @@
-/* app это весь мой интерфейс, мой кодичек*/
-
 import { BoardHeader } from "./components/BoardHeader/BoardHeader"; 
 import { BoardColumn } from "./components/BoardColumn/BoardColumn";
-import { NewCardForm } from "./components/NewCardForm/NewCardForm"; /*ну тут все ясно я добпвляю свои "кирпичики" */
+import { NewCardForm } from "./components/NewCardForm/NewCardForm"; 
 import styles from "./App.module.css";
-import type { Card } from "./types/card"; 
-/*импорт все компоненты, стили и тип*/
-const cards: Card[] = [{ /*создаем массив cards типа Card[]*/
-  id: '1', 
-  title: 'Первая карточка', 
-  isDone: false
-},
-{
-  id: '2', 
-  title: 'Вторая карточка', 
-  isDone: false
-},
-{
-  id: '3', 
-  title: 'Третья карточка', 
-  isDone: false
-},
-{
-  id: '4', 
-  title: 'Четвертая карточка', 
-  isDone: true
-}];
+import { useQuery } from "@tanstack/react-query"; /* Импорт хук для запросов*/
+import { fetchCards } from "./api/cards"; /* Импорт функцию загрузки с сервера*/
 
 function App() {
+  const { data: cards = [], isLoading, isError } = useQuery({ /* useQuery для получения карточек с сервера*/
+    queryKey: ["cards"],
+    queryFn: fetchCards, /* Вызываю функцию из api/cards.ts*/
+  });
+
   return ( 
     <div className={styles.app}>
       <BoardHeader />
       <main className={styles.board}>
         <NewCardForm />
         <div className={styles.columns}>
-          <BoardColumn cards={cards} />
+          {isLoading ? (
+            <p>Загрузка карточек...</p>
+          ) : isError ? (
+            <p>Ошибка при загрузке карточек</p> /*это все проверка на загрузку и ошибку*/
+          ) : (
+            <BoardColumn cards={cards} />
+          )}
         </div>
       </main>
     </div>
